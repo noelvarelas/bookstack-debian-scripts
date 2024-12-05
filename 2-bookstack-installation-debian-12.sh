@@ -284,14 +284,12 @@ run_install_composer >> "$LOGPATH" 2>&1
 info_msg "[5/9] Installing PHP dependencies using composer..."
 run_install_bookstack_composer_deps >> "$LOGPATH" 2>&1
 
-if ! [ "$ENABLE_RESTORE" = "true" ]; then
-  info_msg "[6/9] Creating and populating BookStack .env file..."
-  run_update_bookstack_env >> "$LOGPATH" 2>&1
-fi
-
 if [ "$ENABLE_RESTORE" = "true" ]; then
   info_msg "[6/9] Restoring data using provided backup files..."
   run_restoration >> "$LOGPATH" 2>&1
+else
+  info_msg "[6/9] Creating and populating BookStack .env file..."
+  run_update_bookstack_env >> "$LOGPATH" 2>&1
 fi
 
 info_msg "[7/9] Running initial BookStack database migrations..."
