@@ -315,5 +315,3 @@ info_msg "---------------------------------------------------------------"
 if grep -q "^APP_URL=https://" "$BOOKSTACK_DIR"/.env; then
   echo; [[ "$(read -e -p 'Do you want to run Certbot now to activate HTTPS? [y/N] '; echo "$REPLY")" == [Yy]* ]] && certbot
 fi
-
-echo; [[ "$(read -e -p 'Do you want to run mariadb-secure-installation? [y/N] '; echo "$REPLY")" == [Yy]* ]] && mariadb-secure-installation
