@@ -1,10 +1,15 @@
 # Description
-These are the scripts I use to set up a BookStack server on a Debian 12 VPS.
+These are the scripts I use to set up a BookStack server on a fresh Debian server.
 
-- 1-bookstack-vps-setup-debian-12.sh - Initial setup of sudo user, sshd, and firewall.
+- bookstack-install.sh - Modified version of [the official Ubuntu 24.04 script](https://codeberg.org/bookstack/devops/src/branch/main/scripts/installation-ubuntu-24.04.sh)
+that adds a backup restore option and migrates data to a new domain if necessary.
+It also runs Certbot at the end if you use an HTTPS domain. It uses MariaDB instead of MySQL.
+Note: this script only sets up BookStack. It doesn't do general Debian setup. (firewall, SSH, users, etc.)
 
-- 2-bookstack-installation-debian-12.sh - Modified version of [the official Ubuntu 24.04 script](https://codeberg.org/bookstack/devops/src/branch/main/scripts/installation-ubuntu-24.04.sh)
-that adds a backup restore option and migrates data to a new domain if necessary. It also runs Certbot at the end if you use an HTTPS domain. It uses MariaDB instead of MySQL.
+- bookstack-backup.sh - A cronjob script that follows [the official backup process,](https://www.bookstackapp.com/docs/admin/backup-restore/)
+which can be restored using the bookstack-install script on a new machine.
+Edit the top config lines with your details, then place the script in your root user's crontab.
 
-- 3-bookstack-backup.sh - A cronjob script that follows [the official documentation](https://www.bookstackapp.com/docs/admin/backup-restore/)
-instructions on making backups, which can be restored using the previous script on a new machine.
+- bookstack-update.sh - An update helper script that automates [the official update process.](https://www.bookstackapp.com/docs/admin/updates/)
+This is meant to be run manually after confirming that a new release does not require additional steps.
+Do not use this without a recent backup available!
