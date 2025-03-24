@@ -1,5 +1,5 @@
 # Description
-These are the scripts I use to set up a BookStack server on a fresh Debian server.
+These are the scripts I use to set up a BookStack server on a fresh Debian 12 server.
 
 - bookstack-install.sh - Modified version of [the official Ubuntu 24.04 script](https://codeberg.org/bookstack/devops/src/branch/main/scripts/installation-ubuntu-24.04.sh)
 that adds a backup restore option and migrates data to a new domain if necessary.
