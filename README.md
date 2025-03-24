@@ -4,10 +4,9 @@ These are the scripts I use to set up a BookStack server on a fresh Debian serve
 - bookstack-install.sh - Modified version of [the official Ubuntu 24.04 script](https://codeberg.org/bookstack/devops/src/branch/main/scripts/installation-ubuntu-24.04.sh)
 that adds a backup restore option and migrates data to a new domain if necessary.
 It also runs Certbot at the end if you use an HTTPS domain. It uses MariaDB instead of MySQL.
-Note: this script only sets up BookStack. It doesn't do general Debian setup. (firewall, SSH, users, etc.)
 
-- bookstack-backup.sh - A cronjob script that follows [the official backup process,](https://www.bookstackapp.com/docs/admin/backup-restore/)
-which can be restored using the bookstack-install script on a new machine.
+- bookstack-backup.sh - A cronjob script to create backups that follows [the official backup process.](https://www.bookstackapp.com/docs/admin/backup-restore/)
+The backups can be restored using the bookstack-install.sh script on a new machine.
 Edit the top config lines with your details, then place the script in your root user's crontab.
 
 - bookstack-update.sh - An update helper script that automates [the official update process.](https://www.bookstackapp.com/docs/admin/updates/)
