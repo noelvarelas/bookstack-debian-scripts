@@ -35,19 +35,11 @@ php artisan cache:clear
 php artisan config:clear
 php artisan view:clear
 
+# Reset filesystem permissions
 echo "Resetting filesystem permissions..."; echo
-
-# Set the bookstack folders and files to be owned by the script user and have the group www-data
 chown -R $SCRIPT_USER:www-data /var/www/bookstack
-
-# Set all bookstack files and folders to be readable, writable & executable by the script user and
-# readable & executable by the group and everyone else
 chmod -R 755 /var/www/bookstack
-
-# For the listed directories, grant the group (www-data) write-access
 chmod -R 775 /var/www/bookstack/storage /var/www/bookstack/bootstrap/cache /var/www/bookstack/public/uploads
-
-# Limit the .env file to only be readable by the user and group, and only writable by the user.
 chmod 640 /var/www/bookstack/.env
 
 echo "Done!"
