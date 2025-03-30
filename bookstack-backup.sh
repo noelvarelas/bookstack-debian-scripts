@@ -6,15 +6,16 @@ BACKUP_GROUP="yourgroup"
 BACKUP_TIMESTAMP=$(date -I)
 BACKUP_USER="youruser"
 BACKUPS_TO_KEEP="3"
+BOOKSTACK_DIR="/var/www/bookstack"
 
 # Check that user is root
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root." >&2
-  exit 1
-fi
+[[ $EUID -ne 0 ]] && echo "This script must be run as root." >&2 && exit 1
+
+# Check that the bookstack directory exists
+[ ! -d "$BOOKSTACK_DIR" ] && echo "BookStack is not installed on this system." >&2 && exit 1
 
 # Create backup files
-tar -czf "$BACKUP_DIR"/"$BACKUP_TIMESTAMP"-files.tar.gz -C /var/www/bookstack .env public/uploads storage/uploads themes
+tar -czf "$BACKUP_DIR"/"$BACKUP_TIMESTAMP"-files.tar.gz -C "$BOOKSTACK_DIR" .env public/uploads storage/uploads themes
 mysqldump -u root bookstack > "$BACKUP_DIR"/"$BACKUP_TIMESTAMP"-database.sql
 
 # Change ownership of backup files
