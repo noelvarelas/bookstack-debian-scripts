@@ -11,7 +11,9 @@ Edit the top config lines with your details, then place the script in your root 
 
 - bookstack-update.sh - An update helper script that automates [the official update process.](https://www.bookstackapp.com/docs/admin/updates/)
 This is meant to be run manually after confirming that a new release does not require additional steps.
+The BookStack directory can be configured in the script if it is different from the default.
 Do not use this without a recent backup available!
 
 - bookstack-urlchange.sh - Changes your BookStack URL in both the .env file and database in case you switch IP addresses or domains.
+The BookStack directory can be configured in the script if it is different from the default.
 Do not use this without a recent backup available!

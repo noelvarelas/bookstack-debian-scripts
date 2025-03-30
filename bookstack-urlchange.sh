@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BOOKSTACK_DIR="/var/www/bookstack"
+
 CURRENT_IP=$(ip addr | grep 'state UP' -A4 | grep 'inet ' | awk '{print $2}' | cut -f1  -d'/')
 SCRIPT_USER="${SUDO_USER:-$USER}"
 URL_OLD=$(grep "^APP_URL=" "/var/www/bookstack/.env" | cut -d '=' -f 2)
@@ -9,7 +10,7 @@ URL_OLD=$(grep "^APP_URL=" "/var/www/bookstack/.env" | cut -d '=' -f 2)
 [[ $EUID -ne 0 ]] && echo "This script must be ran with root/sudo privileges." >&2 && exit 1
 
 # Check that the bookstack directory exists
-[ ! -d "$BOOKSTACK_DIR" ] && echo "BookStack is not installed on this system." >&2 && exit 1
+[ ! -d "$BOOKSTACK_DIR" ] && echo "BookStack was not found. Currently configured for: $BOOKSTACK_DIR." >&2 && exit 1
 
 # Check that the bookstack owner is running the script
 dir_owner_uid=$(stat -c '%U' "$BOOKSTACK_DIR")
